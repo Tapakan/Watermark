@@ -135,8 +135,8 @@ class Watermark
     /**
      * Place watermark on image.
      *
-     * @param Resource $img Image resource identifier
-     * @param Resource $watermark
+     * @param Resource $img       Image resource identifier
+     * @param Resource $watermark Image Resource identifier
      *
      * @return Resource
      */
