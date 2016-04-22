@@ -1,6 +1,11 @@
 {
   "name"       : "tapakan/watermark",
-  "description": "Uri helper",
+  "description": [
+    "watermark",
+    "add watermark to image",
+    "add watermark to picture",
+    "add watermark php"
+  ],
   "type"       : "lib",
   "license"    : "MIT",
   "require"    : {
