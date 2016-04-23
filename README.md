@@ -9,7 +9,7 @@ Edit composer.json file and add next lines in require section.
     }
 ```
 ##Using
-```
+```php
 require 'vendor/autoload.php'
 
 use eva\tools\Watermark;
