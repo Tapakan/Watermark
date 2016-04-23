@@ -20,15 +20,15 @@ $arg1 - Path to watermark file. For example: images/watermark.png
 $arg2 - By second argument you can change destination position of watermark. See Available positions sector.
 
 // Then add watermark to someone image.
-$watermark->add('/images/my_new_image_with_watermark');
+$watermark->add('/images/image.jpeg');
 ```
 Image will be saved with same name and to the same directory.
 
 ### Available Positions
 ```
-Watermark::RIGHT_TOP_CORNER  - Right top.  Margin form borders 10px.
-Watermark::RIGHT_DOWN_CORNER - Right down. Margin form borders 10px.
-Watermark::LEFT_TOP_CORNER   - Left top.   Margin form borders 10px.
-Watermark::LEFT_DOWN_CORNER  - Left down.  Margin form borders 10px.
+Watermark::RIGHT_TOP_CORNER  - Right top.  Margin from borders 10px.
+Watermark::RIGHT_DOWN_CORNER - Right down. Margin from borders 10px.
+Watermark::LEFT_TOP_CORNER   - Left top.   Margin from borders 10px.
+Watermark::LEFT_DOWN_CORNER  - Left down.  Margin from borders 10px.
 Watermark::MIDDLE_CENTER     - Middle.
 ```
