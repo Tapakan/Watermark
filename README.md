@@ -3,7 +3,7 @@ Library that helps you easily add watermark to your images. It can be integrated
 
 ##Install
 Edit composer.json file and add next lines in require section.
-```
+```json
     "require-dev": {
         "tapakan\watermark": "1.0"
     }
