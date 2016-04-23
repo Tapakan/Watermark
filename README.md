@@ -1,5 +1,5 @@
 #Watermark
-Library that helps you easily add watermark to your images. It's can be integrated with any system with no problems.
+Library that helps you easily add watermark to your images. It can be integrated with any system without problems.
 
 ##Install
 Edit composer.json file and add next lines in require section.
@@ -22,7 +22,7 @@ $arg2 - By second argument you can change destination position of watermark. See
 // Then add watermark to someone image.
 $watermark->add('/images/my_new_image_with_watermark');
 ```
-Image will be saved with same name. And to the same directory.
+Image will be saved with same name and to the same directory.
 
 ### Available Positions
 ```
