@@ -51,7 +51,7 @@ class Watermark
      * @param int    $position
      * @param array  $allowed   Array of allowed extensions
      */
-    public function __construct($watermark, $position = self::MIDDLE_CENTER, $allowed = self::WHITE_LIST)
+    public function __construct($watermark, $position = self::MIDDLE_CENTER, array $allowed = self::WHITE_LIST)
     {
         // Check if watermark exists.
         if (!$watermark = Path::path($watermark)) {
@@ -112,23 +112,23 @@ class Watermark
         }
 
         switch ($type) {
-            case 'image/jpg':
+            case 'image/jpg' :
             case 'image/jpeg':
                 $resource = imagecreatefromjpeg($image);
                 break;
 
-            case 'image/png':
+            case 'image/png' :
                 $resource = imagecreatefrompng($image);
                 break;
 
-            case 'image/gif':
+            case 'image/gif' :
                 $resource = imagecreatefromgif($image);
                 break;
 
-            default:
+            default          :
                 $resource = imagecreatefromjpeg($image);
         }
-
+        
         return $resource;
     }
 
@@ -155,7 +155,6 @@ class Watermark
                 break;
 
             case self::RIGHT_DOWN_CORNER:
-
                 $posY = $imageY - $waterY - 10;
                 $posX = $imageX - $waterX - 10;
                 break;
