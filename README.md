@@ -16,8 +16,8 @@ use eva\tools\Watermark;
 
 $watermark = new Watermark($arg1, $arg2);
 
-$arg1 - Path to watermark file. For example: images/watermark.png
-$arg2 - By second argument you can change destination position of watermark. See Available positions sector.
+//$arg1 - Path to watermark file. For example: images/watermark.png
+//$arg2 - By second argument you can change destination position of watermark. See Available positions sector.
 
 // Then add watermark to someone image.
 $watermark->add('/images/image.jpeg');
