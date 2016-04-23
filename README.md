@@ -25,7 +25,7 @@ $watermark->add('/images/image.jpeg');
 Image will be saved with same name and to the same directory.
 
 ### Available Positions
-```
+```php
 Watermark::RIGHT_TOP_CORNER  - Right top.  Margin from borders 10px.
 Watermark::RIGHT_DOWN_CORNER - Right down. Margin from borders 10px.
 Watermark::LEFT_TOP_CORNER   - Left top.   Margin from borders 10px.
