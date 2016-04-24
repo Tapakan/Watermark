@@ -5,12 +5,17 @@
   "type"       : "library",
   "keywords"   : [
     "watermark",
-    "add watermark php",
-    "add watermark to image",
-    "add watermark to picture"
+    "add watermark php"
   ],
   "homepage"   : "http://tapakan.github.io/Watermark",
   "license"    : "MIT",
+  "authors"    : [
+    {
+      "name" : "Alexander Oganov",
+      "email": "t_tapak@yahoo.com",
+      "role" : "Developer"
+    }
+  ],
   "require"    : {
     "php"         : ">=5.6",
     "tapakan/path": "1.0",
@@ -22,7 +27,7 @@
   },
   "autoload"   : {
     "psr-4": {
-      "eva\\tools\\": "src/"
+      "eva\\tools\\": "src"
     }
   }
 }
