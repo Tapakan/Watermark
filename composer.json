@@ -1,14 +1,15 @@
 {
   "name"       : "tapakan/watermark",
-  "description": "Add watermark to your images easily",
-  "version"    : "1",
+  "description": "Add watermark to image",
+  "version"    : "1.0",
   "type"       : "library",
   "keywords"   : [
     "watermark",
+    "add watermark php",
     "add watermark to image",
-    "add watermark to picture",
-    "add watermark php"
+    "add watermark to picture"
   ],
+  "homepage"   : "http://tapakan.github.io/Watermark",
   "license"    : "MIT",
   "require"    : {
     "php"         : ">=5.6",
