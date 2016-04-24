@@ -36,6 +36,12 @@ class Watermark
      */
     protected $allowed;
     
+    /**
+     * Path helper object.
+     * @var Path
+     */
+    private $path;
+    
     const WHITE_LIST = ['image/jpg', 'image/jpeg', 'image/gif', 'image/png'];
     
     const RIGHT_TOP_CORNER  = 0;
@@ -53,8 +59,10 @@ class Watermark
      */
     public function __construct($watermark, $position = self::MIDDLE_CENTER, array $allowed = self::WHITE_LIST)
     {
+        $this->path = Path::getInstance();
+        
         // Check if watermark exists.
-        if (!$watermark = Path::path($watermark)) {
+        if (!$watermark = $this->path->path($watermark)) {
             throw new \InvalidArgumentException(
                 "Water mark file {$watermark} doesn't exists"
             );
@@ -80,23 +88,23 @@ class Watermark
      */
     public function add($image)
     {
-        if (!$image = Path::path($image)) {
+        if (!$image = $this->path->path($image)) {
             throw new \InvalidArgumentException(
                 "File {$image} doesn't exists"
             );
         }
-
+        
         $img       = $this->getResource($image);
         $watermark = $this->getResource($this->watermark);
-
+        
         $img = $this->place($img, $watermark);
-
+        
         $ext  = File::getExt($image);
         $func = 'image' . ($ext == 'jpg' ? 'jpeg' : $ext);
-
+        
         return call_user_func_array($func, [$img, $image, 100]);
     }
-
+    
     /**
      * Return image id resource.
      *
@@ -110,28 +118,28 @@ class Watermark
         if (!in_array($type, $this->allowed)) {
             throw new \InvalidArgumentException("{$type} not allowed. Allowed types - " . implode(PHP_EOL, $this->allowed));
         }
-
+        
         switch ($type) {
             case 'image/jpg' :
             case 'image/jpeg':
                 $resource = imagecreatefromjpeg($image);
                 break;
-
+            
             case 'image/png' :
                 $resource = imagecreatefrompng($image);
                 break;
-
+            
             case 'image/gif' :
                 $resource = imagecreatefromgif($image);
                 break;
-
+            
             default          :
                 $resource = imagecreatefromjpeg($image);
         }
         
         return $resource;
     }
-
+    
     /**
      * Place watermark on image.
      *
@@ -144,39 +152,39 @@ class Watermark
     {
         $imageX = imagesx($img);
         $imageY = imagesy($img);
-
+        
         $waterX = imagesx($watermark);
         $waterY = imagesy($watermark);
-
+        
         switch ($this->position) {
             case self::RIGHT_TOP_CORNER:
                 $posY = 10;
                 $posX = $imageX - $waterX - 10;
                 break;
-
+            
             case self::RIGHT_DOWN_CORNER:
                 $posY = $imageY - $waterY - 10;
                 $posX = $imageX - $waterX - 10;
                 break;
-
+            
             case self::LEFT_DOWN_CORNER:
                 $posY = $imageX - $waterX - 10;
                 $posX = 10;
                 break;
-
+            
             case self::LEFT_TOP_CORNER:
                 $posX = 10;
                 $posY = 10;
                 break;
-
+            
             case self::MIDDLE_CENTER:
                 $posY = ($imageY / 2) - ($waterY / 2);
                 $posX = ($imageX / 2) - ($waterX / 2);
                 break;
         }
-
+        
         imagecopy($img, $watermark, $posX, $posY, 0, 0, $waterX, $waterY);
-
+        
         return $img;
     }
 }
