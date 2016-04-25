@@ -2,7 +2,7 @@
 /**
  * Watermark tool.
  * @package     eva\tools
- * @version     1.0
+ * @version     1.0.1
  * @license     http://mit-license.org/
  * @author      Tapakan https://github.com/Tapakan
  * @coder       Alexander Oganov <t_tapak@yahoo.com>
@@ -55,9 +55,8 @@ class Watermark
      *
      * @param string $path    Path to watermark file.
      * @param int    $position
-     * @param array  $allowed Array of allowed extensions
      */
-    public function __construct($path, $position = self::MIDDLE_CENTER, array $allowed = self::WHITE_LIST)
+    public function __construct($path, $position = self::MIDDLE_CENTER)
     {
         $this->path = Path::getInstance('watermark');
         
@@ -78,7 +77,7 @@ class Watermark
         
         $this->watermark = $watermark;
         $this->position  = $position;
-        $this->allowed   = $allowed;
+        $this->allowed   = self::WHITE_LIST;
     }
     
     /**
