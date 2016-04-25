@@ -53,18 +53,18 @@ class Watermark
     /**
      * Watermark constructor.
      *
-     * @param string $path Path to watermark file.
+     * @param string $waterPath Path to watermark file.
      * @param int    $position
      * @param array  $allowed   Array of allowed extensions
      */
-    public function __construct($path, $position = self::MIDDLE_CENTER, array $allowed = self::WHITE_LIST)
+    public function __construct($waterPath, $position = self::MIDDLE_CENTER, array $allowed = self::WHITE_LIST)
     {
         $this->path = Path::getInstance('watermark');
         
         // Check if watermark exists.
-        if (!$watermark = $this->path->path($path)) {
+        if (!$watermark = $this->path->path($waterPath)) {
             throw new \InvalidArgumentException(
-                "Water mark file {$path} doesn't exists"
+                "Water mark file {$waterPath} doesn't exists"
             );
         }
         $position = (int)$position;
