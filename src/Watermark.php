@@ -59,7 +59,7 @@ class Watermark
      */
     public function __construct($watermark, $position = self::MIDDLE_CENTER, array $allowed = self::WHITE_LIST)
     {
-        $this->path = Path::getInstance();
+        $this->path = Path::getInstance('watermark');
         
         // Check if watermark exists.
         if (!$watermark = $this->path->path($watermark)) {
