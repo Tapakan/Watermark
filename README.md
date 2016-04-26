@@ -25,11 +25,14 @@ $watermark->add('/images/image.jpeg');
 Image will be saved with same name and to the same directory.
 
 ### Available Positions
-```php
-Watermark::RIGHT_TOP_CORNER  - Right top.  Margin from borders 10px.
-Watermark::RIGHT_DOWN_CORNER - Right down. Margin from borders 10px.
-Watermark::LEFT_TOP_CORNER   - Left top.   Margin from borders 10px.
-Watermark::LEFT_DOWN_CORNER  - Left down.  Margin from borders 10px.
-Watermark::MIDDLE_CENTER     - Middle.
-```
+There are 5 available constants to change the destination position of watermark.
+
+| CONSTANT         | POSITION                                 |
+| -----------------| -----------------------------------------|
+| RIGHT_TOP_CORNER | Right top. <br> Margin from borders 10px |
+| RIGHT_DOWN_CORNER| Right down.<br> Margin from borders 10px |
+| LEFT_TOP_CORNER  | Left top.<br> Margin from borders 10px   |
+| LEFT_DOWN_CORNER | Left down.<br> Margin from borders 10px  |
+| MIDDLE_CENTER    | Middle.                                  |
+
 ##Demo
