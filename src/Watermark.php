@@ -83,13 +83,13 @@ class Watermark
     /**
      * Add watermark to image.
      *
-     * @param string $image Path to image file.
+     * @param string $path Path to image file.
      */
-    public function add($image)
+    public function add($path)
     {
-        if (!$image = $this->path->path($image)) {
+        if (!$image = $this->path->path($path)) {
             throw new \InvalidArgumentException(
-                "File {$image} doesn't exists"
+                "Image \"{$path}\" doesn't exists"
             );
         }
         
