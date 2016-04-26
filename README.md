@@ -32,3 +32,4 @@ Watermark::LEFT_TOP_CORNER   - Left top.   Margin from borders 10px.
 Watermark::LEFT_DOWN_CORNER  - Left down.  Margin from borders 10px.
 Watermark::MIDDLE_CENTER     - Middle.
 ```
+##Demo
