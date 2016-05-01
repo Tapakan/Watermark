@@ -8,10 +8,10 @@
  * @coder       Alexander Oganov <t_tapak@yahoo.com>
  */
 
-namespace eva\tools;
+namespace Tapakan\Watermark;
 
-use eva\helpers\Path;
-use eva\helpers\File;
+use Tapakan\Path\Path;
+use Tapakan\File\File;
 
 /**
  * Class Watermark
@@ -42,7 +42,7 @@ class Watermark
      */
     private $path;
     
-    const WHITE_LIST = ['image/jpg', 'image/jpeg', 'image/gif', 'image/png'];
+    const WHITE_LIST = array('image/jpg', 'image/jpeg', 'image/gif', 'image/png');
     
     const RIGHT_TOP_CORNER  = 0;
     const RIGHT_DOWN_CORNER = 1;
@@ -50,7 +50,7 @@ class Watermark
     const LEFT_DOWN_CORNER  = 3;
     const MIDDLE_CENTER     = 4;
     const EVERYWHERE        = 5;
-
+    
     /**
      * Watermark constructor.
      *
@@ -60,16 +60,16 @@ class Watermark
     public function __construct($path, $position = self::MIDDLE_CENTER)
     {
         $this->path = Path::getInstance('watermark');
-
+        
         // Set watermark path
         $this->setWatermark($path);
-
+        
         // Set watermark destination position.
         $this->setPosition($position);
-
+        
         $this->allowed = self::WHITE_LIST;
     }
-
+    
     /**
      * Set watermark destination position.
      *
@@ -81,19 +81,25 @@ class Watermark
     public function setPosition($position)
     {
         $position = (int)$position;
-
+        
         // Check if position is valid.
-        if ($position < 0 || $position > 4) {
+        if ($position !== self::RIGHT_TOP_CORNER
+            && $position !== self::RIGHT_DOWN_CORNER
+            && $position !== self::LEFT_TOP_CORNER
+            && $position !== self::LEFT_DOWN_CORNER
+            && $position !== self::MIDDLE_CENTER
+            && $position !== self::EVERYWHERE
+        ) {
             throw new \InvalidArgumentException(
                 "Unavailable position {$position}"
             );
         }
-
+        
         $this->position = $position;
-
+        
         return $this;
     }
-
+    
     /**
      * @param string $path Path to watermark file.
      *
@@ -107,9 +113,8 @@ class Watermark
                 "Water mark file {$path} doesn't exists"
             );
         }
-
         $this->watermark = $watermark;
-
+        
         return $this;
     }
     
@@ -125,7 +130,7 @@ class Watermark
                 "Image \"{$path}\" doesn't exists"
             );
         }
-
+        
         $img = $this->getResource($image);
         $img = $this->addWatermark($img);
         
@@ -134,7 +139,7 @@ class Watermark
         
         return call_user_func_array($func, [$img, $image, 100]);
     }
-
+    
     /**
      * Place watermark on image.
      *
@@ -145,45 +150,71 @@ class Watermark
     protected function addWatermark($img)
     {
         $watermark = $this->getResource($this->watermark);
-
+        
         $imageX = imagesx($img);
         $imageY = imagesy($img);
         
         $waterX = imagesx($watermark);
         $waterY = imagesy($watermark);
-
+        
+        $pos = array();
         switch ($this->position) {
             case self::RIGHT_TOP_CORNER:
-                $posY = 10;
-                $posX = $imageX - $waterX - 10;
+                $pos[] = array(
+                    'x' => $imageX - $waterX - 10,
+                    'y' => 10
+                );
                 break;
-
+            
             case self::RIGHT_DOWN_CORNER:
-                $posY = $imageY - $waterY - 10;
-                $posX = $imageX - $waterX - 10;
+                $pos[] = array(
+                    'x' => $imageX - $waterX - 10,
+                    'y' => $imageY - $waterY - 10
+                );
                 break;
-
+            
             case self::LEFT_DOWN_CORNER:
-                $posY = $imageX - $waterX - 10;
-                $posX = 10;
+                $pos[] = array(
+                    'x' => 10,
+                    'y' => $imageX - $waterX - 10
+                );
                 break;
             
             case self::LEFT_TOP_CORNER:
-                $posX = 10;
-                $posY = 10;
+                $pos[] = array(
+                    'x' => 10,
+                    'y' => 10
+                );
                 break;
             
             case self::MIDDLE_CENTER:
-                $posY = ($imageY / 2) - ($waterY / 2);
-                $posX = ($imageX / 2) - ($waterX / 2);
-
+                $pos[] = array(
+                    'x' => ($imageX / 2) - ($waterX / 2),
+                    'y' => ($imageY / 2) - ($waterY / 2)
+                );
+                break;
+            
+            case self::EVERYWHERE:
+                $countX = floor($imageX / $waterX); // Get number of images on the X
+                $countY = floor($imageY / $waterY); // Get number of images on the Y
+                for ($v = 0; $v <= $countY; $v++) {
+                    for ($h = 0; $h <= $countX; $h++) {
+                        $pos[] = array(
+                            'x' => $v * $waterY,
+                            'y' => $waterX * $h,
+                        );
+                    }
+                }
                 break;
         }
-        imagecopy($img, $watermark, $posX, $posY, 0, 0, $waterX, $waterY);
-
+        
+        foreach ($pos as $position => $positions) {
+            imagecopy($img, $watermark, $positions['x'], $positions['y'], 0, 0, $waterX, $waterY);
+        }
+        
         return $img;
     }
-
+    
     /**
      * Return image id resource.
      *
@@ -197,25 +228,25 @@ class Watermark
         if (!in_array($type, $this->allowed)) {
             throw new \InvalidArgumentException("{$type} not allowed. Allowed types - " . implode(PHP_EOL, $this->allowed));
         }
-
+        
         switch ($type) {
             case 'image/jpg' :
             case 'image/jpeg':
                 $resource = imagecreatefromjpeg($image);
                 break;
-
+            
             case 'image/png' :
                 $resource = imagecreatefrompng($image);
                 break;
-
+            
             case 'image/gif' :
                 $resource = imagecreatefromgif($image);
                 break;
-
+            
             default          :
                 $resource = imagecreatefromjpeg($image);
         }
-
+        
         return $resource;
     }
 }
