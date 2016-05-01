@@ -27,12 +27,13 @@ Image will be saved with same name and to the same directory.
 ### Available Positions
 There are 5 available constants to change the destination position of watermark.
 
-| CONSTANT         | POSITION                                 |
-| -----------------| -----------------------------------------|
-| RIGHT_TOP_CORNER | Right top. <br> Margin from borders 10px |
-| RIGHT_DOWN_CORNER| Right down.<br> Margin from borders 10px |
-| LEFT_TOP_CORNER  | Left top.<br> Margin from borders 10px   |
-| LEFT_DOWN_CORNER | Left down.<br> Margin from borders 10px  |
-| MIDDLE_CENTER    | Middle.                                  |
+| CONSTANT          | POSITION                                 |
+| ----------------- | -----------------------------------------|
+| RIGHT_TOP_CORNER  | Right top. <br> Margin from borders 10px |
+| RIGHT_DOWN_CORNER | Right down.<br> Margin from borders 10px |
+| LEFT_TOP_CORNER   | Left top.<br> Margin from borders 10px   |
+| LEFT_DOWN_CORNER  | Left down.<br> Margin from borders 10px  |
+| MIDDLE_CENTER     | Middle.                                  |
+| EVERYWHERE`soon`        | Duplicating a watermark across the image.|
 
 ##Demo
