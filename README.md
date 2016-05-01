@@ -1,18 +1,18 @@
-#Watermark
+#ImageBuilder
 Library that helps you easily add watermark to your images. It can be integrated with any system without problems.
 
 ##Install
 Edit composer.json file and add next lines in require section.
 ```json
     "require": {
-        "tapakan/watermark": "1.0.0"
+        "tapakan/watermark": "1.0.1"
     }
 ```
 ##Using
 ```php
 require 'vendor/autoload.php'
 
-use eva\tools\Watermark;
+use Tapakan\Watermark\Watermark;
 
 $watermark = new Watermark($arg1, $arg2);
 
@@ -34,6 +34,4 @@ There are 5 available constants to change the destination position of watermark.
 | LEFT_TOP_CORNER   | Left top.<br> Margin from borders 10px   |
 | LEFT_DOWN_CORNER  | Left down.<br> Margin from borders 10px  |
 | MIDDLE_CENTER     | Middle.                                  |
-| EVERYWHERE`soon`        | Duplicating a watermark across the image.|
-
-##Demo
+| EVERYWHERE `new`  | Duplicating a watermark across the image.|
