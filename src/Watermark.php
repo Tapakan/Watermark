@@ -1,7 +1,7 @@
 <?php
 /**
  * Watermark tool.
- * @package     eva\tools
+ * @package     Tapakan\Watermark
  * @version     1.0.1
  * @license     http://mit-license.org/
  * @author      Tapakan https://github.com/Tapakan
@@ -15,7 +15,7 @@ use Tapakan\File\File;
 
 /**
  * Class Watermark
- * @package eva\tools
+ * @package Tapakan\Watermark
  */
 class Watermark
 {
