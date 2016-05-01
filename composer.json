@@ -5,7 +5,8 @@
   "type"       : "library",
   "keywords"   : [
     "watermark",
-    "add watermark php"
+    "image",
+    "php"
   ],
   "homepage"   : "http://tapakan.github.io/Watermark",
   "license"    : "MIT",
